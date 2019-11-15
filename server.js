@@ -18,7 +18,8 @@ router.get('/message', function (req, rest) {
 router.delete('/message', function (req, rest) {
     console.log(req.query)
     console.log(req.body)
-    rest.send('Mensaje ' + req.body.text + ' añadido correctamente')
+    rest.status(201).send([{ error: '', body: 'Eliminado correctamente' }])
+    // rest.send('Mensaje ' + req.body.text + ' añadido correctamente')
 })
 
 // app.use('/', function (req, res) {
