@@ -8,6 +8,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(router)
 
 router.get('/message', function (req, rest) {
+    console.log(req.headers)
+    rest.header({
+        "Custom-Header": "Nuestro valor personalizado"
+    })
     rest.send('lista de mensajes')
 })
 
