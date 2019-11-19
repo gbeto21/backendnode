@@ -52,5 +52,9 @@ router.delete('/message', function (req, rest) {
 //     res.send('Hola')
 // })
 
+app.use('/app', express.static('public'))
+
 app.listen(3000)
 console.log('La aplicación está escuchano en http://localhost:3000')
+
+//nodemon server
