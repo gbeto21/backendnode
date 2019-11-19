@@ -1,6 +1,7 @@
 const express = require('express')
 const response = require('../../network/response')
 const router = express.Router()
+const controller = require('./controller')
 
 router.get('/', function (req, rest) {
     console.log(req.headers)
@@ -13,13 +14,16 @@ router.get('/', function (req, rest) {
 
 router.post('/', function (req, rest) {
 
-    if (req.query.error == "ok") {
-        response.error(req, res, 'Error inesperado', 500, "Es solo una simulación de los errores.")
-    }
+    controller
+        .addMessage(req.body.user, req.body.message)
+        .then((fullMessage) => {
+            response.success(req, rest, fullMessage)
+        })
+        .catch(e => {
+            response.error(req, rest, 'Información inválida', 400, "Error en el controlador.")
+        })
 
-    else {
-        response.success(req, rest, 'Eliminado correctamente')
-    }
+
 })
 
 router.delete('/', function (req, rest) {
