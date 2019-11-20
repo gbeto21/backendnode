@@ -1,9 +1,4 @@
-
 const Model = require('./model')
-
-
-
-
 
 function addMessage(message) {
     const myMessage = new Model(message)
