@@ -47,4 +47,14 @@ router.delete('/', function (req, rest) {
     // rest.send('Mensaje ' + req.body.text + ' añadido correctamente')
 })
 
+router.patch('/:id', function (req, rest) {
+    controller.updateMessage(req.params.id, req.body.message)
+        .then((data) => {
+            response.success(req, rest, data, 200)
+        })
+        .catch(e => {
+            response.error(req, rest, 'Error interno', 500, e)
+        })
+})
+
 module.exports = router
