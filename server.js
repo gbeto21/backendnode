@@ -1,6 +1,9 @@
 const express = require('express')
-// const router = require('./components/message/network')
 const bodyParser = require('body-parser')
+
+const db = require('./db')
+db('mongodb+srv://agb:agb02@cluster0-ansbf.mongodb.net/telegrom')
+
 const router = require('./network/routes')
 var app = express()
 app.use(bodyParser.json())
