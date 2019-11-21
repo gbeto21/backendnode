@@ -1,7 +1,12 @@
 const express = require('express')
+const multer = require('multer')
 const response = require('../../network/response')
 const router = express.Router()
 const controller = require('./controller')
+
+const upload = multer({
+    dest: 'uploads/',
+})
 
 router.get('/', function (req, rest) {
 
@@ -15,10 +20,10 @@ router.get('/', function (req, rest) {
         })
 })
 
-router.post('/', function (req, rest) {
+router.post('/', upload.single('file'), function (req, rest) {
 
     controller
-        .addMessage(req.body.user, req.body.message)
+        .addMessage(req.body.chat, req.body.user, req.body.message)
         .then((fullMessage) => {
             response.success(req, rest, fullMessage)
         })
