@@ -3,9 +3,10 @@ const multer = require('multer')
 const response = require('../../network/response')
 const router = express.Router()
 const controller = require('./controller')
+const config = require('../../config')
 
 const upload = multer({
-    dest: 'public/files/',
+    dest: 'public/' + config.filesRoute + '/',
 })
 
 router.get('/', function (req, rest) {
